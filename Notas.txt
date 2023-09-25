@@ -1,0 +1,22 @@
+Para poder intalar las dependencias de Entity Framework
+
+(A)
+1. Ir a la url de nuget.org
+2. Buscar Entity Framework
+3. Seleccionar la versión estable mas reciente (no preview)
+4. copiar el cmd y ejecutarlo en la carpeta de nuestro proyecto
+
+(B)
+1. Buscar el paquete "Entity Framework in memory" ayuda a crear base de datos en memoria 
+    y poder probar el modelo 
+2. Escoger la versión estable y ejecutarla en el proyecto
+
+
+(C)
+1. Librería para conectarnos al motor de base de datos "Entity Framework postgreSQL"
+dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL --version 7.0.11
+
+
+
+
+
