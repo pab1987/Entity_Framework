@@ -1,11 +1,18 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace projectef.Models;
 
 public class Tarea
 {
-    public Guid tareaId { get; set; }   
+    //[Key]
+    public Guid tareaId { get; set; }
 
+    //[ForeignKey("CategoriaId")]
     public Guid CategoriaId { get; set; }
 
+    //[Required]
+    //[MaxLength(200)]
     public string Titulo { get; set; }
 
     public string Descripcion { get; set; }
@@ -15,6 +22,11 @@ public class Tarea
     public DateTime FechaCreacion { get; set; }
 
     public virtual Categoria Categoria { get; set; }
+
+    //[NotMapped]
+    public string Resumen { get; set; }
+
+
 
 }
 

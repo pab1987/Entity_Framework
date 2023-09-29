@@ -709,11 +709,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/pablo/Documents/Programación/Cursos Platzi/CursoEntityFramework/CursoEntityFramework.csproj",
-      "projectName": "CursoEntityFramework",
-      "projectPath": "/Users/pablo/Documents/Programación/Cursos Platzi/CursoEntityFramework/CursoEntityFramework.csproj",
+      "projectUniqueName": "/Users/pablo/Documents/Programación/Cursos Platzi/projectef/projectef.csproj",
+      "projectName": "projectef",
+      "projectPath": "/Users/pablo/Documents/Programación/Cursos Platzi/projectef/projectef.csproj",
       "packagesPath": "/Users/pablo/.nuget/packages/",
-      "outputPath": "/Users/pablo/Documents/Programación/Cursos Platzi/CursoEntityFramework/obj/",
+      "outputPath": "/Users/pablo/Documents/Programación/Cursos Platzi/projectef/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/pablo/.nuget/NuGet/NuGet.Config"

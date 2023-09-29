@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Qa7smFU5KaKW/FFAcZvr+wbuYgqmdysdRw9tVC8KuTwxhLl8XNRN5NywcAVHRJVIEBHQdnWrn7DHWoEGYlRDQw==",
+  "dgSpecHash": "L7wfxTgusPkd6YahfURWkNS8mZk8RZVztFZPHTlYAn/jVHZMDUrloN+qd6wN66c5Nwx7EFlI/gUbId6th4aSTg==",
   "success": true,
-  "projectFilePath": "/Users/pablo/Documents/Programación/Cursos Platzi/CursoEntityFramework/CursoEntityFramework.csproj",
+  "projectFilePath": "/Users/pablo/Documents/Programación/Cursos Platzi/projectef/projectef.csproj",
   "expectedPackageFiles": [
     "/Users/pablo/.nuget/packages/microsoft.entityframeworkcore/7.0.11/microsoft.entityframeworkcore.7.0.11.nupkg.sha512",
     "/Users/pablo/.nuget/packages/microsoft.entityframeworkcore.abstractions/7.0.11/microsoft.entityframeworkcore.abstractions.7.0.11.nupkg.sha512",
