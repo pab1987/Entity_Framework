@@ -21,6 +21,7 @@ public class Tarea
 
     public DateTime FechaCreacion { get; set; }
 
+    public bool EstadoTarea { get; set; }
     public virtual Categoria Categoria { get; set; }
 
     //[NotMapped]

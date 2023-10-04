@@ -2,35 +2,75 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using projectef;
 using Microsoft.Extensions.DependencyInjection;
-using Npgsql;
 using projectef;
+using projectef.Models;
+
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
 var builder = WebApplication.CreateBuilder(args);
 
-//Así se crea una base de datos en memoria
-//builder.Services.AddDbContext<TareasContext>(p => p.UseInMemoryDatabase("TareaDb"));
-
-//Conexion a base de datos PostgreSQL
-//var connectionString = "Host=localhost;Port=5432;Database=pablo;Username=pablo;Password=010687";
-
-
 builder.Services.AddNpgsql<TareasContext>(builder.Configuration.GetConnectionString("conTareas"));
-
 var app = builder.Build();
 
-app.MapGet("/dbconexion", () => Results.Ok("Conexión exitosa a la base de datos PostgreSQL"));
-
-// Otra ruta para verificar el estado de la base de datos en memoria
-/* app.MapGet("/dbconexion-memoria", async ([FromServices] TareasContext dbContext) =>
+app.MapGet("/dbconexion", async ([FromServices] TareasContext dbContext) =>
 {
-    if (dbContext.Database.IsInMemory())
+    // Asegúrate de que la base de datos se cree si no existe
+    dbContext.Database.EnsureCreated();
+
+    return Results.Ok("Base de datos creada si no existía");
+});
+
+
+app.MapGet("/api/tareas", async ([FromServices] TareasContext dbContext) => 
+{
+    return Results.Ok(dbContext.Tareas.Include(p=> p.Categoria));
+});
+
+app.MapPost("/api/tareas", async ([FromServices] TareasContext dbContext, [FromBody] Tarea tarea) => 
+{
+    tarea.tareaId = Guid.NewGuid();
+    tarea.FechaCreacion = DateTime.Now;
+    await dbContext.AddAsync(tarea);
+    //await dbContex.AssAsync(tarea);
+
+    await dbContext.SaveChangesAsync();
+
+    return Results.Ok();
+});
+
+app.MapPut("/api/tareas/{id}", async ([FromServices] TareasContext dbContext, [FromBody] Tarea tarea, [FromRoute] Guid id) => 
+{
+    var tareaActual = dbContext.Tareas.Find(id);
+
+    if(tareaActual != null)
     {
-        return Results.Ok("Base de datos creada en memoria");
+        tareaActual.CategoriaId = tarea.CategoriaId;
+        tareaActual.Titulo = tarea.Titulo;
+        tareaActual.PrioridadTarea = tarea.PrioridadTarea;
+        tareaActual.Descripcion = tarea.Descripcion;
+
+        await dbContext.SaveChangesAsync();
+
+        return Results.Ok();
     }
-    else
+
+    return Results.NotFound();
+});
+
+app.MapDelete("/api/tareas/{id}", async ([FromServices] TareasContext dbContext, [FromRoute] Guid id) => 
+{
+    var tareaActual = dbContext.Tareas.Find(id);
+
+    if(tareaActual != null)
     {
-        return Results.Problem("La base de datos no está en memoria");
+        dbContext.Remove(tareaActual);
+        await dbContext.SaveChangesAsync();
+
+        return Results.Ok();
     }
-}); */
+
+    return Results.NotFound();
+
+});
 
 app.Run();
